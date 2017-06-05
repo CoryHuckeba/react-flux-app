@@ -1,6 +1,9 @@
 "use strict";
-$ = jQuery = require('jquery');
 
-var App = console.log('Hello, World from Browserify :)');
+global.$ = global.jQuery = require('jquery');
+var React = require('react');
+var Home = require('./components/homepage');
 
-module.exports = App;
+React.render(<Home></Home>, document.getElementById('app'));
+
+
