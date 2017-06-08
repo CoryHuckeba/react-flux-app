@@ -3,25 +3,28 @@
 var React = require('react');
 var Router = require('react-router');
 var Link = require('react-router').Link;
-var AuthorApi = require('../../api/AuthorApi');
+var AuthorActions = require('../../actions/authorActions');
+var AuthorStore = require('../../stores/authorStore');
 var AuthorList = require('./authorList');
 
 var Authors = React.createClass({
 
 	getInitialState: function() {
 		return {
-			authors: []
+			authors: AuthorStore.getAllAuthors()
 		};
 	},
 
-	componentDidMount: function() {
-		
-		if (this.isMounted()) {
-			this.setState({
-				// Mock API call, in a real app this would be an async HTTP call
-				authors: AuthorApi.getAllAuthors()
-			});
-		}
+	_onChange: function() {
+		this.setState({authors: AuthorStore.getAllAuthors() });
+	},
+
+	componentWillMount: function() {
+		AuthorStore.addChangeListener(this._onChange);
+	},
+
+	componentWillUnmount: function() {
+		AuthorStore.addChangeListener(this._onChange);
 	},
 
 	render: function () {		

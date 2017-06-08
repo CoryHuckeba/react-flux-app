@@ -23,7 +23,7 @@ var AuthorApi = {
 		return _clone(author);
 	},
 	
-	saveAuthor: function(author) {
+	saveAuthor: function(author) {		
 		//pretend an ajax call to web api is made here
 		console.log('Pretend this just saved the author to the DB via AJAX call...');
 		
